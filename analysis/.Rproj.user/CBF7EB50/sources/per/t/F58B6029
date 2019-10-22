@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1567308329657.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2533760933",
+    "id" : "F58B6029",
+    "lastKnownWriteTime" : 1562568738,
+    "last_content_update" : 1562568738,
+    "path" : "C:/Users/Toshi A. Furukawa/Downloads/analysis/20vs20-40tolerability.R",
+    "project_path" : "20vs20-40tolerability.R",
+    "properties" : {
+        "cursorPosition" : "9,17",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

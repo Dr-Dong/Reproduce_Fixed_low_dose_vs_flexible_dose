@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1567308327151.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3624735986",
+    "id" : "116A252C",
+    "lastKnownWriteTime" : 1567321690,
+    "last_content_update" : 1567321690608,
+    "path" : "C:/Users/Toshi A. Furukawa/Downloads/analysis/20vs20-40acceptability.R",
+    "project_path" : "20vs20-40acceptability.R",
+    "properties" : {
+        "cursorPosition" : "99,25",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

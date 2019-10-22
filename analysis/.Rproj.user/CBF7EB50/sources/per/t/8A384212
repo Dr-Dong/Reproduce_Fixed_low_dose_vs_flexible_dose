@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1565834317561.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "794846079",
+    "id" : "8A384212",
+    "lastKnownWriteTime" : 1571540753,
+    "last_content_update" : 1571540753412,
+    "path" : "C:/Users/Toshi A. Furukawa/Downloads/analysis/20vs20-40.R",
+    "project_path" : "20vs20-40.R",
+    "properties" : {
+        "cursorPosition" : "148,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

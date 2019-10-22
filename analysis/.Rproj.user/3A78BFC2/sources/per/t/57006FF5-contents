@@ -1,0 +1,26 @@
+install.packages("tidyverse")
+install.packages("meta")
+install.packages("metafor")
+install.packages("readxl") 
+
+#library(tidyverse)
+library(meta)
+library(metafor)
+library(readxl)
+library(summarytools)
+library(dplyr)
+
+#pRIMARY ANALYSES
+source("20vs20-40-80.R")
+source("20vs20-40-80tolerability.R")
+source("20vs20-40-80acceptability.R")
+
+#secondary analyses to see if just a little bit of increase could be  better
+source("20vs20-40.R")
+source("20vs20-40tolerability.R")
+source("20vs20-40acceptability.R")
+
+
+
+
+
