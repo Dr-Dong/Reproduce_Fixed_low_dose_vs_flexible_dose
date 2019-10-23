@@ -4,15 +4,13 @@ install.packages("readxl")
 install.packages("summarytools")
 install.packages("dplyr")
 
-options(warnings=-1)# there are several non-important warnings, like omiting NAs in meta-regression. If you fill like seeing them, just delete the options(warn=-1)
+options(warn=-1)# there are several non-important warnings, like omiting NAs in meta-regression. If you fill like seeing them, just delete the options(warn=-1)
 library(meta)
 library(metafor)
 library(readxl)
 library(summarytools)
 library(dplyr)
 
-
-options(warn = -1)
 #DESCRIPTIVES
 source("Descriptives.R")
 
