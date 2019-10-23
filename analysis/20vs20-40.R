@@ -83,18 +83,6 @@ pooledRORSSRI=metagen(LnRORSSRI,seLnRORSSRI,
 pooledRORSSRI
 forest(pooledRORSSRI)
 
-###mirtazapine
-pooledRORMIR=metagen(LnRORMIR,seLnRORMIR,
-                      studlab=names(LnRORMIR),
-                      comb.fixed=F,
-                      comb.rand=T,
-                      method.tau="REML",
-                      hakn=T,
-                      prediction=T,
-                      sm="OR")
-pooledRORMIR
-forest(pooledRORMIR)
-
 ###venlafaxine
 pooledRORVEN=metagen(LnRORVEN,seLnRORVEN,
                      studlab=names(LnRORVEN),
