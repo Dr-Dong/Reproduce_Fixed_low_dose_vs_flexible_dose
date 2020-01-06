@@ -25,8 +25,6 @@ names(seLnORFixed) = unique(ORFixed20$byvar)
 #create SSRI, MIR, VEN
 LnORFixedSSRI = LnORFixed[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
 seLnORFixedSSRI = seLnORFixed[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
-LnORFixedMIR = LnORFixed[c("mirtazapine")]
-seLnORFixedMIR = seLnORFixed[c("mirtazapine")]
 LnORFixedVEN = LnORFixed[c("venlafaxine")]
 seLnORFixedVEN = seLnORFixed[c("venlafaxine")]
 LnORFixedSSRI
@@ -55,8 +53,6 @@ names(seLnORFlexible) = unique(ORFlexible20_40$byvar)
 #create SSRIs, MIR, VEN
 LnORFlexibleSSRI = LnORFlexible[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
 seLnORFlexibleSSRI = seLnORFlexible[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
-LnORFlexibleMIR = LnORFlexible[c("mirtazapine")]
-seLnORFlexibleMIR = seLnORFlexible[c("mirtazapine")]
 LnORFlexibleVEN = LnORFlexible[c("venlafaxine")]
 seLnORFlexibleVEN = seLnORFlexible[c("venlafaxine")]
 LnORFlexibleSSRI
@@ -83,17 +79,6 @@ pooledRORSSRI=metagen(LnRORSSRI,seLnRORSSRI,
 pooledRORSSRI
 forest(pooledRORSSRI)
 
-###mirtazapine
-pooledRORMIR=metagen(LnRORMIR,seLnRORMIR,
-                      studlab=names(LnRORMIR),
-                      comb.fixed=F,
-                      comb.rand=T,
-                      method.tau="REML",
-                      hakn=T,
-                      prediction=T,
-                      sm="OR")
-pooledRORMIR
-forest(pooledRORMIR)
 
 ###venlafaxine
 pooledRORVEN=metagen(LnRORVEN,seLnRORVEN,

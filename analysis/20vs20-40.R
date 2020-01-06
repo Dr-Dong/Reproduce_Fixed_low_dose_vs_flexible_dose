@@ -83,18 +83,6 @@ pooledRORSSRI=metagen(LnRORSSRI,seLnRORSSRI,
 pooledRORSSRI
 forest(pooledRORSSRI)
 
-###mirtazapine
-pooledRORMIR=metagen(LnRORMIR,seLnRORMIR,
-                      studlab=names(LnRORMIR),
-                      comb.fixed=F,
-                      comb.rand=T,
-                      method.tau="REML",
-                      hakn=T,
-                      prediction=T,
-                      sm="OR")
-pooledRORMIR
-forest(pooledRORMIR)
-
 ###venlafaxine
 pooledRORVEN=metagen(LnRORVEN,seLnRORVEN,
                      studlab=names(LnRORVEN),
@@ -144,5 +132,6 @@ forest(pooledROR,
        colgap.forest="1.5cm",
        overall=F,
        sortvar=c("citalopram", "escitalopram", "fluoxetine", "paroxetine", "sertraline", "venlafaxine"),
-       fs.axis=9)
+       fs.axis=9,
+       col.by="black")
 

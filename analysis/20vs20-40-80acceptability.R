@@ -176,5 +176,6 @@ forest(pooledROR,
        colgap.forest="1.5cm",
        overall=F,
        sortvar=c("citalopram", "escitalopram", "fluoxetine", "paroxetine", "sertraline", "venlafaxine", "mirtazapine"),
-       fs.axis=9)
+       fs.axis=9,
+       col.by="black")
 

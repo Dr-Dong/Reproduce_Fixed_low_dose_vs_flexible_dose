@@ -1,9 +1,9 @@
 ###############################
-#ROR of 20 mg vs 20-40-80 mg###
+#ROR of 20 mg vs 10-20-40-80 mg###
 ###############################
 
 ##OR of 20 mg by Drug
-MyData = read_excel("20(vs20-40-80).xlsx",  na = "NA")
+MyData = read_excel("20(vs10-20-40-80).xlsx",  na = "NA")
 MyData = as.data.frame(MyData)
 
 ###OR of response
@@ -34,8 +34,8 @@ LnORFixedSSRI
 LnORFixedMIR
 LnORFixedVEN
 
-##OR of 20-40-80 mg by Drug
-MyData2 = read_excel("20-40-80.xlsx",  na = "NA")
+##OR of 10-20-40-80 mg by Drug
+MyData2 = read_excel("10-20-40-80.xlsx",  na = "NA")
 MyData2 = as.data.frame(MyData2)
 
 ###OR of response
@@ -301,188 +301,6 @@ forest(pooledROR,
        col.by="black")
 
 
-
-
-###############################
-#difSMD of 20 mg vs 20-40-80 mg###
-###############################
-
-##SMD of 20 mg by Drug
-MyData = read_excel("20(vs20-40-80).xlsx",  na = "NA")
-MyData = as.data.frame(MyData)
-
-SMDFixed20 = metacont(N_imp_e, Mean_e, SD_e, N_imp_c, Mean_c, SD_c, data=MyData,
-                      studlab=StudyID,
-                      comb.fixed=F,
-                      comb.rand=T,
-                      method.tau="REML",
-                      hakn=T,
-                      prediction=T,
-                      sm="SMD",
-                      byvar=Drug)
-SMDFixed20
-
-
-SMDFixed = SMDFixed20$TE.random.w
-seSMDFixed = SMDFixed20$seTE.random.w
-names(SMDFixed) = unique(SMDFixed20$byvar)
-names(seSMDFixed) = unique(SMDFixed20$byvar)
-#keep only SSRIs
-SMDFixedSSRI = SMDFixed[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
-seSMDFixedSSRI = seSMDFixed[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
-SMDFixedMIR = SMDFixed[c("mirtazapine")]
-seSMDFixedMIR = seSMDFixed[c("mirtazapine")]
-SMDFixedVEN = SMDFixed[c("venlafaxine")]
-seSMDFixedVEN = seSMDFixed[c("venlafaxine")]
-SMDFixedSSRI
-SMDFixedMIR
-SMDFixedVEN
-
-##SMD of 20-40-80 mg by Drug
-MyData2 = read_excel("20-40-80.xlsx",  na = "NA")
-MyData2 = as.data.frame(MyData2)
-
-SMDFlexible20_80 = metacont(N_imp_e, Mean_e, SD_e, N_imp_c, Mean_c, SD_c, data=MyData2,
-                      studlab=StudyID,
-                      comb.fixed=F,
-                      comb.rand=T,
-                      method.tau="REML",
-                      hakn=T,
-                      prediction=T,
-                      sm="SMD",
-                      byvar=Drug)
-SMDFlexible20_80
-
-
-SMDFlexible = SMDFlexible20_80$TE.random.w
-seSMDFlexible = SMDFlexible20_80$seTE.random.w
-names(SMDFlexible) = unique(SMDFlexible20_80$byvar)
-names(seSMDFlexible) = unique(SMDFlexible20_80$byvar)
-#keep only SSRIs
-SMDFlexibleSSRI = SMDFlexible[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
-seSMDFlexibleSSRI = seSMDFlexible[c("escitalopram","citalopram","fluoxetine","paroxetine","sertraline")]
-SMDFlexibleMIR = SMDFlexible[c("mirtazapine")]
-seSMDFlexibleMIR = seSMDFlexible[c("mirtazapine")]
-SMDFlexibleVEN = SMDFlexible[c("venlafaxine")]
-seSMDFlexibleVEN = seSMDFlexible[c("venlafaxine")]
-
-##Calculate difSMD
-difSMDSSRI = SMDFlexibleSSRI - SMDFixedSSRI
-sedifSMDSSRI = sqrt(seSMDFixedSSRI^2 + seSMDFlexibleSSRI^2)
-
-pooleddifSMDSSRI=metagen(difSMDSSRI,sedifSMDSSRI,
-                  studlab=names(difSMDSSRI),
-                  comb.fixed=F,
-                  comb.rand=T,
-                  method.tau="REML",
-                  hakn=T,
-                  prediction=T,
-                  sm="SMD")
-pooleddifSMDSSRI
-
-forest(pooleddifSMDSSRI,
-       xlim=c(-0.3,0.3),
-       leftcols=c("studlab"),
-       leftlabs=c("Drug"),
-       rightlabs=c("difSMD","95%CI","weight"),
-       smlab="difSMD",
-       print.i2=T, print.i2.ci=T,
-       label.right="Favours fixed low dose", label.left="Favours flexible dose",
-       prediction=F,
-       fs.lr=9,
-       col.square="blue",col.diamond="red",
-       colgap.forest="1.5cm")
-
-
-#mirtazapine
-difSMDMIR = SMDFlexibleMIR - SMDFixedMIR
-sedifSMDMIR = sqrt(seSMDFixedMIR^2 + seSMDFlexibleMIR^2)
-
-pooleddifSMDMIR=metagen(difSMDMIR,sedifSMDMIR,
-                         studlab=names(difSMDMIR),
-                         comb.fixed=F,
-                         comb.rand=T,
-                         method.tau="REML",
-                         hakn=T,
-                         prediction=T,
-                         sm="SMD")
-pooleddifSMDMIR
-forest(pooleddifSMDMIR,
-       xlim=c(-0.3,0.3),
-       leftcols=c("studlab"),
-       leftlabs=c("Drug"),
-       rightlabs=c("difSMD","95%CI","weight"),
-       smlab="difSMD",
-       print.i2=T, print.i2.ci=T,
-       label.right="Favours fixed low dose", label.left="Favours flexible dose",
-       prediction=F,
-       fs.lr=9,
-       col.square="blue",col.diamond="red",
-       colgap.forest="1.5cm")
-
-#venlafaxine
-difSMDVEN = SMDFlexibleVEN - SMDFixedVEN
-sedifSMDVEN = sqrt(seSMDFixedVEN^2 + seSMDFlexibleVEN^2)
-
-pooleddifSMDVEN=metagen(difSMDVEN,sedifSMDVEN,
-                         studlab=names(difSMDVEN),
-                         comb.fixed=F,
-                         comb.rand=T,
-                         method.tau="REML",
-                         hakn=T,
-                         prediction=T,
-                         sm="SMD")
-pooleddifSMDVEN
-forest(pooleddifSMDVEN,
-       xlim=c(-0.3,0.3),
-       leftcols=c("studlab"),
-       leftlabs=c("Drug"),
-       rightlabs=c("difSMD","95%CI","weight"),
-       smlab="difSMD",
-       print.i2=T, print.i2.ci=T,
-       label.right="Favours fixed low dose", label.left="Favours flexible dose",
-       prediction=F,
-       fs.lr=9,
-       col.square="blue",col.diamond="red",
-       colgap.forest="1.5cm")
-
-
-#drawing a forest plot with three subgroups together
-difSMDSSRI
-difSMDVEN
-difSMDMIR
-
-difSMD = c(difSMDSSRI, difSMDVEN, difSMDMIR)
-sedifSMD = c(sedifSMDSSRI, sedifSMDVEN, sedifSMDMIR)
-DataframedifSMD = cbind.data.frame(Class=c("SSRI", "SSRI", "SSRI", "SSRI", "SSRI", "VEN", "MIR"), 
-                                Drug=c("citalopram", "escitalopram", "fluoxetine", "paroxetine", "sertraline", "venlafaxine", "mirtazapine"),
-                                difSMD=difSMD,sedifSMD=sedifSMD)
-DataframedifSMD
-pooleddifSMD=metagen(difSMD,sedifSMD,data=DataframedifSMD,
-                  studlab=Drug,
-                  comb.fixed=F,
-                  comb.rand=T,
-                  method.tau="REML",
-                  hakn=T,
-                  prediction=T,
-                  sm="SMD",
-                  byvar=Class)
-pooleddifSMD
-forest(pooleddifSMD,
-       xlim=c(-0.3,0.3),
-       leftcols=c("studlab"),
-       leftlabs=c("Drug"),
-       rightlabs=c("difSMD","95%CI","weight"),
-       smlab="DSMD",
-       print.i2=T, print.i2.ci=T,
-       label.right="Favours fixed low dose", label.left="Favours flexible dose",
-       prediction=F,
-       fs.lr=9,
-       col.square="blue",col.diamond="red",
-       colgap.forest="1.5cm",
-       overall=F,
-       fs.axis=9,
-       col.by="black")
 
 
 

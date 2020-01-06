@@ -26,7 +26,10 @@ MyData2$Study_year[is.na(MyData2$Study_year) & MyData2$Drug=="venlafaxine"]=1993
 
 length(MyData$StudyID)   ###number of comparisons for the fixed dose comparisons against placebo
 length(MyData2$StudyID)   ### number of comparisons for the flexible dose comparisons against placebo
-length(unique(c(unique(MyData$StudyID),unique(MyData2$StudyID))))   ###number of included studies
+length(unique(c(unique(MyData$StudyID),unique(MyData2$StudyID))))   ###number of included studies + 4 paroxetine CR arms & 1 venlafaxine XR from the already included studies
+
+MyData4 = rbind.data.frame(MyData, MyData2)
+sum(MyData4$N_rand_e, na.rm=T)+sum(MyData4$N_rand_c, na.rm=T)   ###total number of patients included
 
 
 ###Descriptives for the fixed dose studies
@@ -35,6 +38,7 @@ table(MyData$Drug)
 tapply(MyData$Study_year, MyData$Drug, median, na.rm=T)
 tapply(MyData$Study_year, MyData$Drug, min, na.rm=T)
 tapply(MyData$Study_year, MyData$Drug, max, na.rm=T)
+tapply(MyData$N_rand_e+MyData$N_rand_c, MyData$Drug, mean, na.rm=T)
 tapply(MyData$Age, MyData$Drug, mean, na.rm=T)
 tapply(MyData$Women, MyData$Drug, mean, na.rm=T)
 tapply(MyData$Weeks, MyData$Drug, mean, na.rm=T)
@@ -60,6 +64,7 @@ table(MyData2$Drug)
 tapply(MyData2$Study_year, MyData2$Drug, median, na.rm=T)
 tapply(MyData2$Study_year, MyData2$Drug, min, na.rm=T)
 tapply(MyData2$Study_year, MyData2$Drug, max, na.rm=T)
+tapply(MyData2$N_rand_e+MyData2$N_rand_c, MyData2$Drug, mean, na.rm=T)
 tapply(MyData2$Age, MyData2$Drug, mean, na.rm=T)
 tapply(MyData2$Women, MyData2$Drug, mean, na.rm=T)
 tapply(MyData2$Weeks, MyData2$Drug, mean, na.rm=T)
@@ -103,7 +108,18 @@ MyRegression = glm(regimen ~ Study_year+Drug, family=binomial(link="logit"), MyD
 summary(MyRegression)
 boxplot(Study_year ~ regimen, MyData6)
 
-###counting published and unpublished studies
-MyData6 = distinct(MyData6, StudyID, .keep_all=T)   ###need dplyr
-table(MyData6$Unpublished, exclude=NULL)
-table(MyData6$Study_year, exclude=NULL)
+
+###examination of association between N_rand_e and regimen
+MyData = transform(MyData, regimen="Fixed")
+MyData2 = transform(MyData2, regimen="Flexible")
+MyData7 = rbind.data.frame(MyData, MyData2)
+MyData7$N_rand = MyData7$N_rand_e + MyData7$N_rand_c
+MyData7 = MyData7[!is.na(MyData7$N_rand),]
+wilcox.test(N_rand ~ regimen, MyData7)
+t.test(N_rand ~ regimen, MyData7)
+
+MyData7$regimen = recode(MyData7$regimen, 'Fixed'=1, 'Flexible'=0)   ###need dplyr
+
+MyRegression2 = glm(regimen ~ N_rand+Drug, family=binomial(link="logit"), MyData7)
+summary(MyRegression2)
+boxplot(N_rand_e ~ regimen, MyData7)
