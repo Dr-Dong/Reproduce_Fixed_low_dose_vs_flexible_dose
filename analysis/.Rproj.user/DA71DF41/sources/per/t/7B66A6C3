@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "70559952",
+    "hash" : "450094969",
     "id" : "7B66A6C3",
-    "lastKnownWriteTime" : 1571737981,
-    "last_content_update" : 1571737981973,
+    "lastKnownWriteTime" : 1578299750,
+    "last_content_update" : 1578299750,
     "path" : "~/Google Drive/_mydrive/GRISELDA/Dose-Response/Fixed low dose regimen vs flexible dose regimen /Reproduce_Fixed_low_dose_vs_flexible_dose/analysis/MASTER.R",
     "project_path" : "MASTER.R",
     "properties" : {
-        "cursorPosition" : "33,0",
-        "scrollLine" : "21"
+        "cursorPosition" : "65,0",
+        "scrollLine" : "51"
     },
     "relative_order" : 1,
     "source_on_save" : false,
