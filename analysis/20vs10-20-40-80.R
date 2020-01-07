@@ -122,6 +122,7 @@ forest(pooledRORMIR,
        col.by="black")
 
 ###venlafaxine
+if(F){
 pooledRORVEN=metagen(LnRORVEN,seLnRORVEN,
                      studlab=names(LnRORVEN),
                      comb.fixed=F,
@@ -144,7 +145,7 @@ forest(pooledRORVEN,
        col.square="blue",col.diamond="red",
        colgap.forest="1.5cm",
        col.by="black")
-
+}
 
 #drawing a forest plot of ORs of individual fixed and flexible dose studies
 forest(ORFixed20,
